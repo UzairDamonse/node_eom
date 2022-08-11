@@ -1,6 +1,6 @@
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 const con = require("../../lib/dbConnection");
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 // Add functions
