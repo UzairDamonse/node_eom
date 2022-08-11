@@ -1,0 +1,27 @@
+{
+  "name": "mysql-ecommerce",
+  "version": "1.0.0",
+  "description": "1. Create new folder and open it in VSCode\r 2. Open the terminal and run `npm init --yes`. This will create a package.json\r 3. Next, run `npm i dotenv express cors mysql`. This will install the dotenv, express, cors and mysql packages\r 4. Create a `.gitignore` file with the following inside, to ignore pushing these files to github\r    - `node_modules` => Ignore NPM packages from being uploaded\r    - `.env` => Ignore .env which contains **environment variables**, which is usually sensitive information. add the following into this file\r      - `DB_HOST` => Clevercloud Host\r      - `DB_USER` => Clevercloud User\r      - `DB_PASS` => Clevercloud Password\r      - `DB_NAME` => Clevercloud Database Name\r 5. Create an `index.js` file. This file is the entry to your app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "heroku": "^7.62.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.7.7",
+    "nodemon": "^2.0.19"
+  },
+  "directories": {
+    "lib": "lib"
+  }
+}
