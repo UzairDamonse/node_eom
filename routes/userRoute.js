@@ -4,6 +4,7 @@ const con = require("../lib/dbConnection");
 const jwt = require("jsonwebtoken");
 const middleware = require("../middleware/auth");
 const AuthController = require("../controller/Auth/index");
+const adminController = require("../controller/admin/index");
 
 // All users
 
@@ -65,23 +66,7 @@ router.put("/:id", middleware, (req, res) => {
 // Delete user
 
 router.delete("/:id", middleware, (req, res) => {
-  if (req.user.type === "admin") {
-    let id = req.params.id;
-
-    try {
-      con.query(
-        `DELETE FROM users WHERE users.user_id = "${id}"`,
-        (err, result) => {
-          if (err) throw err;
-          res.send(result);
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
-    res.send("Not valid user");
-  }
+  return adminController.deleteUser(req, res);
 });
 
 // Encryption

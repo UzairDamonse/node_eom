@@ -1,6 +1,6 @@
-// const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 const con = require("../../lib/dbConnection");
-// const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 // Add functions
@@ -32,28 +32,6 @@ async function addProfileDetails(req, res) {
     try {
       con.query(
         `INSERT INTO profile_details (card_name,account_type,account_number,address,user_id) VALUES ("${card_name}","${account_type}","${account_number}","${address}","${user_id}")`,
-        (err, result) => {
-          if (err) throw err;
-          res.send(result);
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
-    res.send("Not valid user");
-  }
-}
-async function addOrder(req, res) {
-  if (req.user.type === "admin") {
-    const { user_id, amount, shipping_address, order_email, order_status } =
-      req.body;
-
-    const order_date = new Date().toISOString().slice(0, 19).replace("T", " ");
-
-    try {
-      con.query(
-        `INSERT INTO orders (user_id,amount,shipping_address,order_email,order_date,order_status) VALUES ("${user_id}","${amount}","${shipping_address}","${order_email}","${order_date}","${order_status}")`,
         (err, result) => {
           if (err) throw err;
           res.send(result);
@@ -113,30 +91,7 @@ async function editProfileDetails(req, res) {
     res.send("Not valid user");
   }
 }
-async function editOrder(req, res) {
-  if (req.user.type === "admin") {
-    const { user_id, amount, shipping_address, order_email, order_status } =
-      req.body;
-
-    const order_date = new Date().toISOString().slice(0, 19).replace("T", " ");
-
-    let id = req.params.id;
-
-    try {
-      con.query(
-        `UPDATE orders SET user_id="${user_id}",amount="${amount}",shipping_address="${shipping_address}",order_email="${order_email}",order_date="${order_date}",order_status="${order_status}" WHERE order_id = "${id}"`,
-        (err, result) => {
-          if (err) throw err;
-          res.send(result);
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
-    res.send("Not valid user");
-  }
-}
+async function editUser(req, res) {}
 
 // Delete functions
 
@@ -180,13 +135,13 @@ async function deleteProfileDetails(req, res) {
     res.send("Not valid user");
   }
 }
-async function deleteOrder(req, res) {
+async function deleteUser(req, res) {
   if (req.user.type === "admin") {
     let id = req.params.id;
 
     try {
       con.query(
-        `DELETE FROM orders WHERE orders.order_id = "${id}"`,
+        `DELETE FROM users WHERE users.user_id = "${id}"`,
         (err, result) => {
           if (err) throw err;
           res.send(result);
@@ -203,11 +158,10 @@ async function deleteOrder(req, res) {
 module.exports = {
   addProduct,
   addProfileDetails,
-  addOrder,
   editProduct,
   editProfileDetails,
-  editOrder,
+  editUser,
   deleteProduct,
   deleteProfileDetails,
-  deleteOrder,
+  deleteUser,
 };
