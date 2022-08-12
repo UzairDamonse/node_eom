@@ -4,7 +4,7 @@ const con = require("../lib/dbConnection");
 const jwt = require("jsonwebtoken");
 const middleware = require("../middleware/auth");
 const AuthController = require("../controller/Auth/index");
-const adminController = require("../controller/admin/index");
+const adminController = require("../controller/Admin/index");
 
 // All products
 
