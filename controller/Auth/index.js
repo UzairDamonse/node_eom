@@ -64,7 +64,6 @@ async function Register(req, res) {
 
     let user = {
       full_name,
-      type,
       email,
       password: hash,
       phone_number,

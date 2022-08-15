@@ -7,11 +7,11 @@ require("dotenv").config();
 
 async function addProduct(req, res) {
   if (req.user.type === "admin") {
-    const { name, pay_by, description, price, img_url, user_id } = req.body;
+    const { name, pay_in, description, price, img_url, user_id } = req.body;
 
     try {
       con.query(
-        `INSERT INTO products (name, pay_by, description, price, img_url, user_id) VALUES ("${name}","${pay_by}","${description}","${price}","${img_url}","${user_id}")`,
+        `INSERT INTO products (name, pay_in, description, price, img_url, user_id) VALUES ("${name}","${pay_in}","${description}","${price}","${img_url}","${user_id}")`,
         (err, result) => {
           if (err) throw err;
           res.send(result);
@@ -49,13 +49,13 @@ async function addProfileDetails(req, res) {
 
 async function editProduct(req, res) {
   if (req.user.type === "admin") {
-    const { name, price, description, img_url, user_id } = req.body;
+    const { name, price, pay_in, description, img_url, user_id } = req.body;
 
     let id = req.params.id;
 
     try {
       con.query(
-        `UPDATE products SET name="${name}",price="${price}",description="${description}",img_url="${img_url}",user_id="${user_id}" WHERE products.product_id = "${id}"`,
+        `UPDATE products SET name="${name}",price="${price}",pay_in="${pay_in}",description="${description}",img_url="${img_url}",user_id="${user_id}" WHERE products.product_id = "${id}"`,
         (err, result) => {
           if (err) throw err;
           res.send(result);
